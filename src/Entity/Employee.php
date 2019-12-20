@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
- * @ORM\DiscriminatorMap({"a" = "BarA", "b" = "BarB"})
+ * @ORM\DiscriminatorMap({"regular" = "RegularEmployee", "contract" = "ContractEmployee"})
  */
-abstract class Bar
+abstract class Employee
 {
     /**
      * @ORM\Id()
@@ -20,8 +20,8 @@ abstract class Bar
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Foo", inversedBy="bars")
-     * @ORM\JoinColumn(name="foo_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Department", inversedBy="employees")
+     * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
      */
-    private $foo;
+    private $department;
 }
